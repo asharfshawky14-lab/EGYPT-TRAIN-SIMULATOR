@@ -436,6 +436,6 @@ export class Stations {
 
     this.stationObjects = [];
     this.people = [];
-  }
+  
   }
       
