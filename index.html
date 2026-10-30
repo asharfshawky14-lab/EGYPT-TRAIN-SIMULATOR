@@ -1,0 +1,185 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+  >
+
+  <meta name="theme-color" content="#172d3b">
+
+  <title>محاكي قطارات مصر</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #9fc8dc;
+      font-family: Arial, sans-serif;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: none;
+    }
+
+    .hud {
+      position: fixed;
+      z-index: 5;
+      color: white;
+      background: rgba(13, 35, 49, .9);
+      border: 1px solid rgba(255,255,255,.16);
+      border-radius: 13px;
+      padding: 10px;
+    }
+
+    .top {
+      top: 10px;
+      right: 10px;
+      left: 10px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 12px;
+      font-size: 12px;
+    }
+
+    .stats b {
+      color: #8ee0e8;
+    }
+
+    .controls {
+      bottom: 10px;
+      right: 10px;
+      left: 10px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 7px;
+    }
+
+    button, select {
+      border: 0;
+      border-radius: 9px;
+      padding: 11px 5px;
+      background: #d7e9ee;
+      color: #173447;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    button:active {
+      background: #9dd9e1;
+    }
+
+    select {
+      grid-column: span 2;
+    }
+
+    .wide {
+      grid-column: span 2;
+    }
+
+    #message {
+      position: fixed;
+      z-index: 5;
+      top: 80px;
+      left: 10px;
+      right: 10px;
+      margin: auto;
+      width: fit-content;
+      max-width: 95%;
+      padding: 8px 12px;
+      border-radius: 9px;
+      background: rgba(13,35,49,.8);
+      color: white;
+      font-size: 12px;
+    }
+  </style>
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+
+<body>
+
+  <div class="hud top">
+    <strong>🚆 محاكي قطارات مصر</strong>
+
+    <div class="stats">
+      <span>السرعة: <b id="speedValue">0</b></span>
+      <span>الحالة: <b id="statusValue">متوقف</b></span>
+      <span>الركاب: <b id="passengerValue">0 / 300</b></span>
+    </div>
+  </div>
+
+  <div id="message">
+    جاري تحميل العالم...
+  </div>
+
+  <div class="hud controls">
+
+    <button id="accelerate">
+      زيادة السرعة ▲
+    </button>
+
+    <button id="brake">
+      تقليل السرعة ▼
+    </button>
+
+    <button id="emergencyStop">
+      فرامل طوارئ
+    </button>
+
+    <button id="startAtRamses">
+      محطة رمسيس
+    </button>
+
+    <select id="stationSelect">
+      <option value="" disabled selected>
+        اختر محطة
+      </option>
+    </select>
+
+    <button id="stopAtStation">
+      الوقوف بالمحطة
+    </button>
+
+    <button id="openDoors">
+      فتح الأبواب
+    </button>
+
+    <button id="boardPassengers" class="wide">
+      تحميل 20 راكب
+    </button>
+
+  </div>
+
+  <script
+    type="module"
+    src="./src/main.js">
+  </script>
+
+</body>
+</html>
